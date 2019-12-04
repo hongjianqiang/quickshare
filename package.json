@@ -1,0 +1,29 @@
+{
+  "name": "httpshare",
+  "version": "1.0.0",
+  "description": "一个类似Python的SimpleHTTPServer、http.server模块，但拥有上传和断点续传的功能",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --watch --config build/webpack.dev.js ",
+    "build": "npm run clean && webpack --config build/webpack.prod.js",
+    "clean": "rimraf ./lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hongjianqiang/httpshare.git"
+  },
+  "author": "HongJianQiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hongjianqiang/httpshare/issues"
+  },
+  "homepage": "https://github.com/hongjianqiang/httpshare#readme",
+  "devDependencies": {
+    "rimraf": "^3.0.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  }
+}
