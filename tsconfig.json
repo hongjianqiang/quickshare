@@ -1,7 +1,8 @@
 {
     "compilerOptions": {
         "target": "ES5",
-        "module": "ES6",
+        "module": "CommonJS",
+        "noEmitOnError":true,
         "noImplicitAny": true,
         "strictNullChecks": true,
         "strictFunctionTypes": true,
@@ -11,6 +12,7 @@
         "noImplicitReturns": true,
         "alwaysStrict": true,
         "esModuleInterop": true,
-        "declaration": true
+        "declaration": true,
+        "declarationDir": "./src/types"
     }
 }
