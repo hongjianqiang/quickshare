@@ -1,7 +1,8 @@
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.tsx',
+    entry: './src/index.ts',
+    target: 'node',
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     },
