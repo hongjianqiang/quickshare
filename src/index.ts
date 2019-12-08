@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
 import http from 'http';
+import template from './template.html';
 import { getMime } from './mime-types';
 import { exists, stat } from './fs';
 import compiler from './compiler';
