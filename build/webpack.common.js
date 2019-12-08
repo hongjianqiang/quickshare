@@ -9,6 +9,8 @@ module.exports = {
     module: {
         rules: [{
             test: /\.tsx?$/, loader: 'ts-loader'
+        }, {
+            test: /\.html?$/i, loader: 'raw-loader'
         }]
     },
     output: {
