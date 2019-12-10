@@ -7,11 +7,16 @@
     <title>Directory listing for /</title>
 </head>
 <body>
-    <h1>Directory listing for /</h1>
+    <h2>
+    Directory listing for <a href="/">/</a>
+    <% for (const path of this.paths) { %>
+        <a href="<% path.href %>"><% path.name %></a>
+    <% } %>
+    </h2>
     <hr>
     <ul>
         <% for (const file of this.list) { %>
-        <li><a href="<% file %>" target="_bank"><% file %></a></li>
+        <li><a href="<% file %>"><% file %></a></li>
         <% } %>
     </ul>
 </body>
