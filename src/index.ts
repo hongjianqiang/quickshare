@@ -14,20 +14,35 @@ const CHARSET = 'UTF-8';
 
 async function handleDirs (req: http.IncomingMessage, res: http.ServerResponse, absPathname: string) {
     const files = await readdir(absPathname);
+    const pathname = absPathname.split(process.cwd()).join('');
 
     let list:any[] = [];
 
     list = files.map(async file => {
-        const filePath = path.join(absPathname, file);
-        const fileStat = await stat(filePath);
-        const isDir = fileStat.isDirectory();
+        try {
+            const filePath = path.join(absPathname, file);
+            const fileStat = await stat(filePath);
+            const isDir = fileStat.isDirectory();
 
-        return isDir ? file + path.sep : file;
+            return isDir ? file + '/' : file;
+        } catch (e) {
+            return '';
+        }
     });
 
     list = await Promise.all(list);
+    list = list.filter(file => file !== '');
+
+    const folders = pathname.split(path.sep).filter(folder => folder !== '');
+    const paths = folders.map((folder, i, folders) => {
+        return '/' + folders.slice(0, i + 1).join('/') + '/';
+    }).map(path => ({
+        href: path,
+        name: path.split('/').slice(-2).join('/')
+    }));
 
     const html = compiler(template, {
+        paths,
         list
     });
 
