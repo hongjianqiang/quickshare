@@ -4,15 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Directory listing for /</title>
+    <title><% this.title %></title>
+    <style>
+        .folder {
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .folder .name { 
+            padding: 0 5px;
+            background: #eee;
+            border: 2px;
+        }
+        .arrow-right {
+            box-sizing: border-box;
+            border-right: 1px solid #999;
+            border-top: 1px solid #999;
+            transform: rotate(45deg);
+            width: 10px;
+            height: 10px;
+            display: block;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
-    <h2>
-    Directory listing for <a href="/">/</a>
-    <% for (const path of this.paths) { %>
-        <a href="<% path.href %>"><% path.name %></a>
-    <% } %>
-    </h2>
+    <h3>
+        <a class="folder" href="/">
+            <span class="name">根目录</span>
+            <i class="arrow-right"></i>
+        </a>
+        <% for (const path of this.paths) { %>
+        <a class="folder" href="<% path.href %>">
+            <span class="name"><% path.name %></span>
+            <i class="arrow-right"></i>
+        </a>
+        <% } %>
+    </h3>
     <hr>
     <ul>
         <% for (const file of this.list) { %>
