@@ -21,6 +21,7 @@ module.exports = {
   rules: {
     // 缩进为4个空格
     'indent': ['error', 4],
+    // 必须写分号
     'semi': ['error', 'always']
   }
 }
