@@ -13,6 +13,8 @@ export function getMime (ext:string):string {
         svg: 'image/svg+xml',
         tiff: 'image/tiff',
         txt: 'text/plain',
+        ts: 'text/plain',
+        tsx: 'text/plain',
         xml: 'text/xml'
     };
 
