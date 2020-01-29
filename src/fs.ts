@@ -25,3 +25,5 @@ export function readdir (path: fs.PathLike): Promise<string[]> {
         });
     });
 }
+
+export default fs;

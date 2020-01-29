@@ -29,9 +29,23 @@
             display: block;
             margin: 0 5px;
         }
+        .upload { display: flex; align-items: center; flex-wrap: wrap; }
+        .upload .file { padding: 5px; }
+        .upload .btn {
+            width: 100px;
+            height: 30px;
+            color: #fff;
+            background-color: skyblue;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .upload [type="file"] { display: none; }
     </style>
 </head>
 <body>
+    <!-- 路径 -->
     <h3>
         <a class="folder" href="/">
             <span class="name">根目录</span>
@@ -45,10 +59,39 @@
         <% } %>
     </h3>
     <hr>
+    <!-- 文件上传 -->
+    <div id="upload-wrap" class="upload">
+        <button class="btn" onclick="selectFiles.click()">上传文件</button>
+        <input id="selectFiles" name="files" type="file" onchange="onSelectedFiles(this)" multiple>
+    </div>
+    <hr>
+    <!-- 文件列表 -->
     <ul>
         <% for (const file of this.list) { %>
         <li><a href="<% file %>"><% file %></a></li>
         <% } %>
     </ul>
+    <!-- 处理脚本 -->
+    <script>
+        const uploadWrap = document.getElementById('upload-wrap');
+
+        function onSelectedFiles(input) {
+            if (Array.isArray(this.fileSpans)) {
+                this.fileSpans.map(function(span){ return span.remove()});
+            } else {
+                this.fileSpans = [];
+            }
+
+            const { files } = input;
+
+            for (const file of files) {
+                const span = document.createElement('span');
+                span.className = 'file';
+                span.innerText = file.name;
+                uploadWrap.append(span);
+                this.fileSpans.push(span);
+            }
+        }
+    </script>
 </body>
 </html>

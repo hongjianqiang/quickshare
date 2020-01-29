@@ -1,39 +1,11 @@
-import fs from 'fs';
 import path from 'path';
-import process from 'process';
 import { URL } from 'url';
 import http from 'http';
+import { LOCALHOSTS, HOST, PORT, CHARSET, ROOT } from './config';
 import template from './template.html';
 import { getMime } from './mime-types';
-import { exists, stat, readdir } from './fs';
+import fs, { exists, stat, readdir } from './fs';
 import compiler from './compiler';
-
-const ARGV = process.argv;
-
-let PORT:number;
-let HOST:string;
-let CHARSET:string;
-let ROOT:string;
-
-(function () {
-    let indexOf:number;
-
-    // 自定义端口
-    indexOf = ARGV.indexOf('-p');
-    PORT = indexOf < 0 ? 2020 : +ARGV[indexOf + 1];
-
-    // 自定义host
-    indexOf = ARGV.indexOf('-h');
-    HOST = indexOf < 0 ? '0.0.0.0' : ARGV[indexOf + 1];
-
-    // 自定义字符集
-    indexOf = ARGV.indexOf('-c');
-    CHARSET = indexOf < 0 ? 'UTF-8' : ARGV[indexOf + 1];
-
-    // 自定义根目录
-    indexOf = ARGV.indexOf('-r');
-    ROOT = indexOf < 0 ? process.cwd() : ARGV[indexOf + 1];
-})();
 
 async function handleDirs (req: http.IncomingMessage, res: http.ServerResponse, absPathname: string) {
     const files = await readdir(absPathname);
@@ -120,5 +92,9 @@ function requestListener (req: http.IncomingMessage, res: http.ServerResponse): 
 
 http.createServer(requestListener).listen(PORT, HOST, () => {
     console.clear();
-    console.log(`\n> Listening at http://${HOST}:${PORT}/\n`);
+    console.log('Starting...');
+    LOCALHOSTS.map(localhost => {
+        console.log(`> Listening at http://${localhost}:${PORT}/`);
+    });
+    console.log();
 });
