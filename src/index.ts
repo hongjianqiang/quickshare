@@ -143,11 +143,10 @@ http.createServer(requestListener).listen(PORT, HOST, () => {
     console.clear();
     console.log('=================================================\n');
     console.log('You can now view this app in the browser.\n');
+    console.log(`  Local:            http://127.0.0.1:${PORT}\n`);
 
     for (const localhost of LOCALHOSTS) {
-        if (localhost === '127.0.0.1') {
-            console.log(`  Local:            http://${localhost}:${PORT}\n`);
-        } else {
+        if (localhost !== '127.0.0.1') {
             console.log(`  On Your Network:  http://${localhost}:${PORT}\n`);
         }
     }
