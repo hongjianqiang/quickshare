@@ -92,9 +92,17 @@ function requestListener (req: http.IncomingMessage, res: http.ServerResponse): 
 
 http.createServer(requestListener).listen(PORT, HOST, () => {
     console.clear();
-    console.log('Starting...');
-    LOCALHOSTS.map(localhost => {
-        console.log(`> Listening at http://${localhost}:${PORT}/`);
-    });
-    console.log();
+    console.log('=================================================\n');
+    console.log('You can now view this app in the browser.\n');
+
+    for (const localhost of LOCALHOSTS) {
+        if (localhost === '127.0.0.1') {
+            console.log(`  Local:            http://${localhost}:${PORT}\n`);
+        } else {
+            console.log(`  On Your Network:  http://${localhost}:${PORT}\n`);
+        }
+    }
+
+    console.log('The service is running.\n');
+    console.log('=================================================\n');
 });
