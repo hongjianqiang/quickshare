@@ -30,7 +30,7 @@
             margin: 0 5px;
         }
         .upload { display: flex; align-items: center; flex-wrap: wrap; }
-        .upload .file { padding: 5px; }
+        .upload .file { padding: 5px; margin: 0 5px; border-bottom: 1px solid #409eff; }
         .upload .btn {
             width: 100px;
             height: 30px;
@@ -62,8 +62,8 @@
     <hr>
     <!-- 文件上传 -->
     <div id="upload-wrap" class="upload">
-        <button class="btn" onclick="selectFiles.click()">上传文件</button>
-        <input id="selectFiles" name="files" type="file" onchange="onSelectedFiles(this)" multiple>
+        <button class="btn" onclick="uploadFiles.click()">上传文件</button>
+        <input id="uploadFiles" name="files" type="file" onchange="onUploadFiles(this)" multiple>
     </div>
     <hr>
     <!-- 文件列表 -->
@@ -74,23 +74,40 @@
     </ul>
     <!-- 处理脚本 -->
     <script>
-        const uploadWrap = document.getElementById('upload-wrap');
+        var uploadWrap = document.getElementById("upload-wrap");
 
-        function onSelectedFiles(input) {
-            if (Array.isArray(this.fileSpans)) {
-                this.fileSpans.map(function(span){ return span.remove()});
-            } else {
-                this.fileSpans = [];
-            }
+        function upload(file, span) {
+            var xhr = new XMLHttpRequest();
+            var filename = file.name;
 
-            const { files } = input;
+            xhr.upload.onprogress = function(event) {
+                var percent = (Math.round((event.loaded / event.total) * 100)) + "%";
+                span.innerText = "[" + percent + "]" + filename;
+            };
 
-            for (const file of files) {
-                const span = document.createElement('span');
-                span.className = 'file';
-                span.innerText = file.name;
+            xhr.onloadend = function() {
+                if (xhr.status == 200) {
+                    span.innerText = "[Finished!]" + filename;
+                } else {
+                    span.innerText = "[Fail!]" + filename;
+                }
+            };
+
+            xhr.open("POST", filename);
+            xhr.send(file);
+        }
+
+        function onUploadFiles(input) {
+            var files = input.files;
+
+            for (var i = 0; i < files.length; i++) {
+                var span = document.createElement("span");
+
+                span.className = "file";
+                span.innerText = files[i].name;
                 uploadWrap.append(span);
-                this.fileSpans.push(span);
+
+                upload(files[i], span)
             }
         }
     </script>
