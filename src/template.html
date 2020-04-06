@@ -67,13 +67,14 @@
     </div>
     <hr>
     <!-- 文件列表 -->
-    <ul>
+    <ul id="file-list">
         <% for (const file of this.list) { %>
         <li><a href="<% file %>"><% file %></a></li>
         <% } %>
     </ul>
     <!-- 处理脚本 -->
     <script>
+        var fileList = document.getElementById("file-list");
         var uploadWrap = document.getElementById("upload-wrap");
 
         function upload(file, span) {
@@ -85,9 +86,13 @@
                 span.innerText = "[" + percent + "]" + filename;
             };
 
-            xhr.onloadend = function() {
+            xhr.onloadend = function(event) {
+                var filename = event.target.responseText;
+                console.log(event.target);
                 if (xhr.status == 200) {
-                    span.innerText = "[Finished!]" + filename;
+                    var li = document.createElement('li');
+                    li.innerHTML = '<a href="' + filename + '">' + filename + '</a>';
+                    fileList.prepend(li);
                 } else {
                     span.innerText = "[Fail!]" + filename;
                 }

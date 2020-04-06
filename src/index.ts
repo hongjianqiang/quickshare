@@ -82,13 +82,61 @@ async function handleStatic (req: http.IncomingMessage, res: http.ServerResponse
     }
 }
 
+async function handleUpload (req: http.IncomingMessage, res: http.ServerResponse) {
+    const href = `http://${req.headers.host}${req.url}`;
+    const url = new URL(href);
+    const pathname = decodeURIComponent(url.pathname.replace(/\.\.\//g, ''));
+
+    let i = 0;
+
+    do {
+        const pathObject = path.parse(path.join(ROOT, pathname));
+
+        delete pathObject.base;
+
+        pathObject.name = i ? `${pathObject.name} (${i})` : pathObject.name;
+
+        const base = pathObject.name + pathObject.ext;
+        const absPathname = path.format(pathObject);
+
+        if (await exists(absPathname)) {
+            i++;
+            continue;
+        } else {
+            const fileStream = fs.createWriteStream(absPathname, { flags: 'w' });
+
+            // 将请求体发送到文件
+            req.pipe(fileStream);
+
+            // 当请求完成时，所有数据都写入磁盘
+            fileStream.on('close', () => {
+                res.end(base);
+            });
+
+            // 在 I/O 错误的情况下，完成请求
+            fileStream.on('error', (err) => {
+                console.error(err);
+                res.writeHead(500);
+                res.end(base);
+            });
+
+            break;
+        }
+    } while (true);
+}
+
 function requestListener (req: http.IncomingMessage, res: http.ServerResponse): void {
     const href = decodeURIComponent(`http://${req.headers.host}${req.url}`);
     const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    const method = req.method;
 
-    console.log(req.method, href, 'FROM', clientIP);
+    console.log(method, href, 'FROM', clientIP);
 
-    handleStatic(req, res);
+    if (method === 'GET') {
+        handleStatic(req, res);
+    } else if (method === 'POST') {
+        handleUpload(req, res);
+    }
 }
 
 http.createServer(requestListener).listen(PORT, HOST, () => {
