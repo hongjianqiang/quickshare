@@ -37,7 +37,7 @@ async function handleDirs (req: http.IncomingMessage, res: http.ServerResponse, 
     }));
 
     const len = paths.length;
-    const title = (paths[len - 1] && paths[len - 1].name.slice(0, -1)) || '/';
+    const title = (paths[len - 1] && paths[len - 1].name.slice(0)) || '/';
 
     const html = compiler(template, {
         title,
@@ -84,8 +84,9 @@ async function handleStatic (req: http.IncomingMessage, res: http.ServerResponse
 
 function requestListener (req: http.IncomingMessage, res: http.ServerResponse): void {
     const href = decodeURIComponent(`http://${req.headers.host}${req.url}`);
+    const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
 
-    console.log(req.method, href);
+    console.log(req.method, href, 'FROM', clientIP);
 
     handleStatic(req, res);
 }

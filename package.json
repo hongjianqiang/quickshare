@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack --watch --config build/webpack.dev.js ",
     "build": "npm run clean && webpack --config build/webpack.prod.js",
-    "test": "npm run build && node ./lib/httpshare.min.js",
+    "start": "npm run build && node ./lib/httpshare.min.js",
     "clean": "rimraf ./lib"
   },
   "repository": {
