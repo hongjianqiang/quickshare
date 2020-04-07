@@ -10,4 +10,4 @@ commander
     .option('-d, --dir [DIR]', 'Specify alternative directory [default: current directory]')
     .parse(process.argv);
 
-require('./lib/httpshare.min.js');
+require('./lib/quickshare.min.js');
