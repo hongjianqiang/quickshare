@@ -13,10 +13,11 @@ export function getMime (ext:string):string {
         svg: 'image/svg+xml',
         tiff: 'image/tiff',
         txt: 'text/plain',
+        md: 'text/plain',
         ts: 'text/plain',
         tsx: 'text/plain',
         xml: 'text/xml'
     };
 
-    return mime[ext] || 'application/octet-stream';
+    return mime[ext.toLowerCase()] || 'application/octet-stream';
 };

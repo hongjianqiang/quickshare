@@ -14,7 +14,7 @@ module.exports = {
         }]
     },
     output: {
-        path: path.resolve(__dirname, '../lib'),
-        filename: 'httpshare.min.js'
+        path: path.resolve(__dirname, '..', 'lib'),
+        filename: 'quickshare.min.js'
     }
 };

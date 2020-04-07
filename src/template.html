@@ -29,9 +29,24 @@
             display: block;
             margin: 0 5px;
         }
+        .upload { display: flex; align-items: center; flex-wrap: wrap; }
+        .upload .file { padding: 5px; margin: 0 5px; border-bottom: 1px solid #409eff; }
+        .upload .btn {
+            width: 100px;
+            height: 30px;
+            color: #fff;
+            background-color: #409eff;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+        .upload .btn:hover { background-color: #66b1ff; }
+        .upload [type="file"] { display: none; }
     </style>
 </head>
 <body>
+    <!-- 路径导航 -->
     <h3>
         <a class="folder" href="/">
             <span class="name">根目录</span>
@@ -45,10 +60,61 @@
         <% } %>
     </h3>
     <hr>
-    <ul>
+    <!-- 文件上传 -->
+    <div id="upload-wrap" class="upload">
+        <button class="btn" onclick="uploadFiles.click()">上传文件</button>
+        <input id="uploadFiles" name="files" type="file" onchange="onUploadFiles(this)" multiple>
+    </div>
+    <hr>
+    <!-- 文件列表 -->
+    <ul id="file-list">
         <% for (const file of this.list) { %>
         <li><a href="<% file %>"><% file %></a></li>
         <% } %>
     </ul>
+    <!-- 处理脚本 -->
+    <script>
+        var fileList = document.getElementById("file-list");
+        var uploadWrap = document.getElementById("upload-wrap");
+
+        function upload(file, span) {
+            var xhr = new XMLHttpRequest();
+            var filename = file.name;
+
+            xhr.upload.onprogress = function(event) {
+                var percent = (Math.round((event.loaded / event.total) * 100)) + "%";
+                span.innerText = "[" + percent + "]" + filename;
+            };
+
+            xhr.onloadend = function(event) {
+                var filename = event.target.responseText;
+                console.log(event.target);
+                if (xhr.status == 200) {
+                    var li = document.createElement('li');
+                    li.innerHTML = '<a href="' + filename + '">' + filename + '</a>';
+                    fileList.prepend(li);
+                } else {
+                    span.innerText = "[Fail!]" + filename;
+                }
+            };
+
+            xhr.open("POST", filename);
+            xhr.send(file);
+        }
+
+        function onUploadFiles(input) {
+            var files = input.files;
+
+            for (var i = 0; i < files.length; i++) {
+                var span = document.createElement("span");
+
+                span.className = "file";
+                span.innerText = files[i].name;
+                uploadWrap.append(span);
+
+                upload(files[i], span)
+            }
+        }
+    </script>
 </body>
 </html>

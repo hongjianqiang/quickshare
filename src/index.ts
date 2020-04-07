@@ -1,39 +1,11 @@
-import fs from 'fs';
 import path from 'path';
-import process from 'process';
 import { URL } from 'url';
 import http from 'http';
+import { LOCALHOSTS, HOST, PORT, CHARSET, ROOT } from './config';
 import template from './template.html';
 import { getMime } from './mime-types';
-import { exists, stat, readdir } from './fs';
+import fs, { exists, stat, readdir } from './fs';
 import compiler from './compiler';
-
-const ARGV = process.argv;
-
-let PORT:number;
-let HOST:string;
-let CHARSET:string;
-let ROOT:string;
-
-(function () {
-    let indexOf:number;
-
-    // 自定义端口
-    indexOf = ARGV.indexOf('-p');
-    PORT = indexOf < 0 ? 2020 : +ARGV[indexOf + 1];
-
-    // 自定义host
-    indexOf = ARGV.indexOf('-h');
-    HOST = indexOf < 0 ? '0.0.0.0' : ARGV[indexOf + 1];
-
-    // 自定义字符集
-    indexOf = ARGV.indexOf('-c');
-    CHARSET = indexOf < 0 ? 'UTF-8' : ARGV[indexOf + 1];
-
-    // 自定义根目录
-    indexOf = ARGV.indexOf('-r');
-    ROOT = indexOf < 0 ? process.cwd() : ARGV[indexOf + 1];
-})();
 
 async function handleDirs (req: http.IncomingMessage, res: http.ServerResponse, absPathname: string) {
     const files = await readdir(absPathname);
@@ -65,7 +37,7 @@ async function handleDirs (req: http.IncomingMessage, res: http.ServerResponse, 
     }));
 
     const len = paths.length;
-    const title = (paths[len - 1] && paths[len - 1].name.slice(0, -1)) || '/';
+    const title = (paths[len - 1] && paths[len - 1].name.slice(0)) || '/';
 
     const html = compiler(template, {
         title,
@@ -110,15 +82,75 @@ async function handleStatic (req: http.IncomingMessage, res: http.ServerResponse
     }
 }
 
+async function handleUpload (req: http.IncomingMessage, res: http.ServerResponse) {
+    const href = `http://${req.headers.host}${req.url}`;
+    const url = new URL(href);
+    const pathname = decodeURIComponent(url.pathname.replace(/\.\.\//g, ''));
+
+    let i = 0;
+
+    do {
+        const pathObject = path.parse(path.join(ROOT, pathname));
+
+        delete pathObject.base;
+
+        pathObject.name = i ? `${pathObject.name} (${i})` : pathObject.name;
+
+        const base = pathObject.name + pathObject.ext;
+        const absPathname = path.format(pathObject);
+
+        if (await exists(absPathname)) {
+            i++;
+            continue;
+        } else {
+            const fileStream = fs.createWriteStream(absPathname, { flags: 'w' });
+
+            // 将请求体发送到文件
+            req.pipe(fileStream);
+
+            // 当请求完成时，所有数据都写入磁盘
+            fileStream.on('close', () => {
+                res.end(base);
+            });
+
+            // 在 I/O 错误的情况下，完成请求
+            fileStream.on('error', (err) => {
+                console.error(err);
+                res.writeHead(500);
+                res.end(base);
+            });
+
+            break;
+        }
+    } while (true);
+}
+
 function requestListener (req: http.IncomingMessage, res: http.ServerResponse): void {
     const href = decodeURIComponent(`http://${req.headers.host}${req.url}`);
+    const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress;
+    const method = req.method;
 
-    console.log(req.method, href);
+    console.log(method, href, 'FROM', clientIP);
 
-    handleStatic(req, res);
+    if (method === 'GET') {
+        handleStatic(req, res);
+    } else if (method === 'POST') {
+        handleUpload(req, res);
+    }
 }
 
 http.createServer(requestListener).listen(PORT, HOST, () => {
     console.clear();
-    console.log(`\n> Listening at http://${HOST}:${PORT}/\n`);
+    console.log('=================================================\n');
+    console.log('You can now view this app in the browser.\n');
+    console.log(`  Local:            http://127.0.0.1:${PORT}\n`);
+
+    for (const localhost of LOCALHOSTS) {
+        if (localhost !== '127.0.0.1') {
+            console.log(`  On Your Network:  http://${localhost}:${PORT}\n`);
+        }
+    }
+
+    console.log('The service is running.\n');
+    console.log('=================================================\n');
 });
