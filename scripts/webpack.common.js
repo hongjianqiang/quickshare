@@ -1,6 +1,6 @@
-const path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const config = require('../package.json');
+const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const config = require('../package.json')
 
 module.exports = {
   entry: './src/app.ts',
@@ -18,7 +18,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin()
   ],
   output: {
     filename: `${config.name}.js`,
