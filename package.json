@@ -5,10 +5,8 @@
   "main": "./dist/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "dev:client": "webpack-dev-server --open --config scripts/webpack.client.dev.js",
-    "build:client": "",
-    "build:server": "",
-    "clean": "rimraf ./dist"
+    "dev": "webpack-dev-server --open --config ./scripts/webpack.dev.js",
+    "build": "webpack --config ./scripts/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -26,16 +24,15 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^4.3.0",
-    "rimraf": "^3.0.2",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "vue": "^2.6.11",
-    "vue-loader": "^15.9.3",
-    "vue-template-compiler": "^2.6.11",
+    "vue-server-renderer": "^2.6.11",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.1.0"
+    "webpack-merge": "^5.1.1"
   }
 }
