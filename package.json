@@ -5,7 +5,7 @@
   "main": "./dist/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --config ./scripts/webpack.dev.js",
+    "dev": "webpack --config ./scripts/webpack.dev.js",
     "build": "webpack --config ./scripts/webpack.prod.js"
   },
   "repository": {
@@ -25,14 +25,12 @@
   "dependencies": {},
   "devDependencies": {
     "clean-webpack-plugin": "^3.0.0",
-    "html-webpack-plugin": "^4.3.0",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "vue": "^2.6.11",
     "vue-server-renderer": "^2.6.11",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.1"
   }
 }

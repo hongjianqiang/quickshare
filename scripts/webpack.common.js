@@ -1,12 +1,10 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const package = require('../package.json');
+const config = require('../package.json');
 
 module.exports = {
-  entry: {
-    app: './src/app.ts'
-  },
+  entry: './src/app.ts',
+  target: 'node',
   module: {
     rules: [
       {
@@ -21,12 +19,9 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: `${package.name[0].toUpperCase()}${package.name.slice(1)}`
-    })
   ],
   output: {
-    filename: '[name].bundle.js',
+    filename: `${config.name}.js`,
     path: path.resolve(__dirname, '..', 'dist')
   }
 }
