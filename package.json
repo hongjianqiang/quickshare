@@ -5,8 +5,10 @@
   "main": "./dist/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "dev": "webpack --config ./scripts/webpack.dev.js",
-    "build": "webpack --config ./scripts/webpack.prod.js"
+    "start": "nodemon ./dist/quickshare.js",
+    "watch": "webpack --watch --config ./scripts/webpack.dev.js",
+    "build": "webpack --config ./scripts/webpack.prod.js",
+    "test": "nodemon --signal SIGHUP ./dist/quickshare.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
+    "nodemon": "^2.0.4",
     "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "vue": "^2.6.11",

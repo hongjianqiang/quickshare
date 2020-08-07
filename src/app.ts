@@ -2,6 +2,10 @@ import http from 'http'
 import Vue from 'vue'
 import config from '../package.json'
 
+process.on('SIGUSR2', function () {
+  console.log('什么啊!')
+})
+
 const renderer = require('vue-server-renderer').createRenderer({
   template:
   '<html lang="zh">' +
@@ -27,7 +31,7 @@ const context = {
   `  <meta name="description" content="${config.description}">`
 }
 
-http.createServer(function (req, res) {
+const server = http.createServer(function (req, res) {
   const app = new Vue({
     data: { url: req.url },
     template: '<div>访问的 URL 是： {{ url }}</div>'
@@ -42,4 +46,26 @@ http.createServer(function (req, res) {
     }
     res.end(html)
   })
-}).listen(2020, () => console.log('服务在运行了'))
+}).listen(2020, () => console.log('服务在运行了!'))!
+
+const handleExit:any = function (signal:any):void {
+  console.log(`接收到信号 ${signal}. Close my server properly.`)
+  server.close(function () {
+    process.exit(0)
+  })
+}
+
+process.on('SIGINT', handleExit)
+process.on('SIGQUIT', handleExit)
+process.on('SIGTERM', handleExit)
+process.on('SIGHUP', handleExit)
+process.on('SIGSTOP', handleExit)
+process.on('SIGUSR1', function () { console.log('这他妈是啥') })
+
+process.on('beforeExit', (code) => {
+  console.log('Process beforeExit event with code: ', code)
+})
+
+process.on('exit', (code) => {
+  console.log('Process exit event with code: ', code)
+})
