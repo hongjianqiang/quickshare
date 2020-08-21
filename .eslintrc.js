@@ -1,27 +1,24 @@
 module.exports = {
   env: {
-    es6: true,
-    node: true
-  },
-  extends: [
-    'standard'
-  ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly'
+    browser: true,
+    node: true,
+    commonjs: true
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: 'module'
+    sourceType: 'module',                   // use ESM syntax
+    ecmaFeatures: {
+      impliedStrict: true,                  // enable global strict mode
+      jsx: true                             // enable JSX
+    }
   },
-  plugins: [
-    '@typescript-eslint'
-  ],
+  globals: {
+  },
+  plugins: ['@typescript-eslint'],
   rules: {
-    // 缩进为4个空格
-    'indent': ['error', 4],
-    // 必须写分号
-    'semi': ['error', 'always']
-  }
+  },
+  extends: [
+    'standard'                              // https://github.com/standard/standard/blob/master/docs/RULES-zhcn.md
+  ],
 }
