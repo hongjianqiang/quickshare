@@ -1,11 +1,11 @@
 {
-  "name": "quickshare_",
+  "name": "quickshare",
   "version": "1.2.0",
   "description": "一个类似Python的SimpleHTTPServer、http.server模块，但拥有上传和断点续传的功能",
   "main": "./lib/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "client": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
