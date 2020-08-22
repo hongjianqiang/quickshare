@@ -1,12 +1,11 @@
-module.exports = {
-  outputDir: 'client',
+const { TARGET } = process.env
 
+const config = {
   productionSourceMap: false,
 
   configureWebpack: {
-    entry: './src/client.ts',
-    output: {
-      filename: 'index.js'
+    performance: {
+      hints: false // 取消打包文件过大的警告
     }
   },
 
@@ -24,3 +23,18 @@ module.exports = {
     extract: false // 是否将组件中的 CSS 提取至一个独立的 CSS 文件中 (而不是动态注入到 JavaScript 中的 inline 代码)。
   }
 }
+
+if (TARGET === 'Server') {
+  // 服务端
+  config.outputDir = './dist/server'
+  config.configureWebpack.target = 'node'
+} else if (TARGET === 'Client') {
+  // 客户端
+  config.outputDir = './dist/client'
+  config.configureWebpack.entry = './src/client/main.ts'
+  config.configureWebpack.output = {
+    filename: 'index.js'
+  }
+}
+
+module.exports = config

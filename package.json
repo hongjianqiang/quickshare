@@ -5,9 +5,12 @@
   "main": "./lib/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "client": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev-client": "cross-env TARGET=Client vue-cli-service serve",
+    "dev-server": "cross-env TARGET=Server vue-cli-service build --target lib --formats umd-min --filename quickshare --watch src/server/main.ts",
+    "build-client": "cross-env TARGET=Client vue-cli-service build --target app",
+    "build-server": "cross-env TARGET=Server vue-cli-service build --target lib --formats umd-min --filename quickshare src/server/main.ts",
+    "lint-client": "cross-env TARGET=Client vue-cli-service lint",
+    "lint-server": "cross-env TARGET=Server vue-cli-service lint"
   },
   "repository": {
     "type": "git",
@@ -26,7 +29,7 @@
     "vue-property-decorator": "8.4.2"
   },
   "devDependencies": {
-    "@types/node": "8.10.62",
+    "@types/node": "^8.10.62",
     "@typescript-eslint/eslint-plugin": "2.33.0",
     "@typescript-eslint/parser": "2.33.0",
     "@vue/cli-plugin-babel": "4.5.0",
@@ -35,6 +38,7 @@
     "@vue/cli-service": "4.5.0",
     "@vue/eslint-config-standard": "5.1.2",
     "@vue/eslint-config-typescript": "5.0.2",
+    "cross-env": "7.0.2",
     "eslint": "5.16.0",
     "eslint-plugin-import": "2.20.2",
     "eslint-plugin-node": "11.1.0",
