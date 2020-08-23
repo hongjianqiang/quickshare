@@ -6,9 +6,9 @@
   "bin": "./bin.js",
   "scripts": {
     "dev-client": "cross-env TARGET=Client vue-cli-service serve",
-    "dev-server": "cross-env TARGET=Server vue-cli-service build --target lib --formats umd-min --filename quickshare --watch src/server/main.ts",
-    "build-client": "cross-env TARGET=Client vue-cli-service build --target app",
-    "build-server": "cross-env TARGET=Server vue-cli-service build --target lib --formats umd-min --filename quickshare src/server/main.ts",
+    "dev-server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare --watch src/server/main.ts",
+    "build-client": "cross-env TARGET=Client vue-cli-service build --no-clean --target app",
+    "build-server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare src/server/main.ts",
     "lint-client": "cross-env TARGET=Client vue-cli-service lint",
     "lint-server": "cross-env TARGET=Server vue-cli-service lint"
   },
@@ -46,10 +46,10 @@
     "eslint-plugin-standard": "4.0.0",
     "eslint-plugin-vue": "6.2.2",
     "node-sass": "4.12.0",
+    "raw-loader": "4.0.1",
     "sass-loader": "8.0.2",
     "typescript": "3.9.7",
-    "vue-template-compiler": "2.6.12",
-    "raw-loader": "4.0.1"
+    "vue-template-compiler": "2.6.12"
   },
   "engines": {
     "node": ">= 8.11.0",

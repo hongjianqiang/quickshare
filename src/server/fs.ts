@@ -56,4 +56,12 @@ export function readdir (path: fs.PathLike): Promise<string[]|false> {
   })
 }
 
+export const readFile = (path: fs.PathLike) => {
+  return new Promise(resolve => {
+    fs.readFile(path, 'utf8', (err, data) => {
+      err ? resolve(false) : resolve(data)
+    })
+  })
+}
+
 export default fs
