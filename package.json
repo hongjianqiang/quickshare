@@ -5,12 +5,13 @@
   "main": "./lib/quickshare.min.js",
   "bin": "./bin.js",
   "scripts": {
-    "dev-client": "cross-env TARGET=Client vue-cli-service serve",
-    "dev-server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare --watch src/server/main.ts",
-    "build-client": "cross-env TARGET=Client vue-cli-service build --no-clean --target app",
-    "build-server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare src/server/main.ts",
-    "lint-client": "cross-env TARGET=Client vue-cli-service lint",
-    "lint-server": "cross-env TARGET=Server vue-cli-service lint"
+    "dev:client": "cross-env TARGET=Client vue-cli-service serve",
+    "dev:server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare --watch src/server/main.ts",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "cross-env TARGET=Client vue-cli-service build --no-clean --target app",
+    "build:server": "cross-env TARGET=Server vue-cli-service build --no-clean --target lib --formats umd-min --filename quickshare src/server/main.ts",
+    "lint:client": "cross-env TARGET=Client vue-cli-service lint",
+    "lint:server": "cross-env TARGET=Server vue-cli-service lint"
   },
   "repository": {
     "type": "git",
