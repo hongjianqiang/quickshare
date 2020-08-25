@@ -1,13 +1,15 @@
 <template>
   <div class="layout">
     <el-breadcrumb separator="/" class="pl-24 pr-24 pt-24 breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
-      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+      <el-breadcrumb-item
+        v-for="p of pathname"
+        :key="p.path"
+        :to="p"
+      >
+        <el-link :href="p.path || '/'" class="cp f-size-16">
+          <i v-if="!p.label" class="el-icon-s-home"></i>{{p.label}}
+        </el-link>
+      </el-breadcrumb-item>
     </el-breadcrumb>
 
     <div class="pl-24 pr-24 pt-8 pb-16 toolbar">
@@ -132,6 +134,21 @@ export default class HelloWorld extends Vue {
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄'
       }]
+    }
+  }
+
+  get pathname () {
+    const { pathname } = window.location
+
+    if (pathname === '/') {
+      return ['']
+    } else {
+      return pathname
+        .split('/')
+        .map((value, index, array) => ({
+          label: decodeURI(value),
+          path: array.slice(0, index + 1).join('/')
+        }))
     }
   }
 }

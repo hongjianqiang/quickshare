@@ -16,6 +16,8 @@ export default class App extends Vue {}
 
 <style lang="scss">
 #app {
+  .cp { cursor: pointer; }
+
   .pl-8 { padding-left: 8px; }
   .pr-8 { padding-right: 8px; }
   .pt-8 { padding-top: 8px; }
@@ -30,5 +32,8 @@ export default class App extends Vue {}
   .pr-24 { padding-right: 24px; }
   .pt-24 { padding-top: 24px; }
   .pb-24 { padding-bottom: 24px; }
+
+  .f-size-14 { font-size: 14px; }
+  .f-size-16 { font-size: 16px; }
 }
 </style>
