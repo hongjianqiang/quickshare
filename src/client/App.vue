@@ -35,5 +35,7 @@ export default class App extends Vue {}
 
   .f-size-14 { font-size: 14px; }
   .f-size-16 { font-size: 16px; }
+
+  .f-w-normal { font-weight: normal; }
 }
 </style>

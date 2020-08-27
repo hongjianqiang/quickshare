@@ -1,13 +1,9 @@
 <template>
   <div class="layout">
     <el-breadcrumb separator="/" class="pl-24 pr-24 pt-24 breadcrumb">
-      <el-breadcrumb-item
-        v-for="p of pathname"
-        :key="p.path"
-        :to="p"
-      >
-        <el-link :href="p.path || '/'" class="cp f-size-16">
-          <i v-if="!p.label" class="el-icon-s-home"></i>{{p.label}}
+      <el-breadcrumb-item v-for="p of pathname" :key="p.path">
+        <el-link :href="p.path || '/'" class="cp f-w-normal f-size-16" :class="{ 'is-history': p.isHistory }">
+          <i v-if="!p.path" class="el-icon-s-home"></i>{{p.label}}
         </el-link>
       </el-breadcrumb-item>
     </el-breadcrumb>
@@ -137,11 +133,9 @@ export default class HelloWorld extends Vue {
     }
   }
 
-  get pathname () {
-    const { pathname } = window.location
-
+  getPathObj (pathname: string) {
     if (pathname === '/') {
-      return ['']
+      return [{ label: '', path: '' }]
     } else {
       return pathname
         .split('/')
@@ -151,13 +145,67 @@ export default class HelloWorld extends Vue {
         }))
     }
   }
+
+  get pathname () {
+    const { pathname } = location
+    const historyPathname = localStorage.getItem('pathname') || '/'
+
+    const pathObj = this.getPathObj(pathname)
+    const historyPathObj = this.getPathObj(historyPathname)
+
+    console.log(pathObj, historyPathObj)
+
+    let sticky = false
+    const result = []
+
+    for (let i = 0; i < Math.max(pathObj.length, historyPathObj.length); i++) {
+      const p1 = pathObj[i]
+      const p2 = historyPathObj[i]
+
+      if (p1 && p2) {
+        if (p1.path === p2.path) {
+          sticky = true
+          result.push({
+            ...p1,
+            isHistory: false
+          })
+        } else {
+          sticky = false
+          result.push({
+            ...p1,
+            isHistory: false
+          })
+        }
+      } else if (p1 && !p2) {
+        result.push({
+          ...p1,
+          isHistory: false
+        })
+      } else if (!p1 && p2) {
+        if (!sticky) break
+
+        result.push({
+          ...p2,
+          isHistory: true
+        })
+      }
+    }
+
+    console.log(result)
+    localStorage.setItem('pathname', pathname)
+
+    return result
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+  @import "../element-variables.scss";
+
   .breadcrumb {
     /deep/ .el-breadcrumb__item { margin-bottom: 8px; }
+    .is-history { color: $--color-text-placeholder; }
   }
   .toolbar {
   }
