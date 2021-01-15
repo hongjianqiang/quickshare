@@ -1,0 +1,37 @@
+{
+  "name": "quickshare",
+  "version": "2.0.0",
+  "description": "一个类似Python的SimpleHTTPServer、http.server模块，但拥有上传和断点续传的功能",
+  "main": "",
+  "scripts": {
+    "dev:client": "webpack --config ./build/webpack.dev.js",
+    "build": "node ./build/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hongjianqiang/quickshare.git"
+  },
+  "author": "HongJianQiang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hongjianqiang/quickshare/issues"
+  },
+  "homepage": "https://github.com/hongjianqiang/quickshare#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "html-webpack-plugin": "^4.5.1",
+    "webpack": "^4.46.0",
+    "webpack-merge": "^5.7.3"
+  },
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "engines": {
+    "node": ">= 8.0.0",
+    "npm": ">= 5.2.0"
+  }
+}
