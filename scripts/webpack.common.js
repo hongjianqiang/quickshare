@@ -17,6 +17,20 @@ module.exports = {
       {
         test: /\.m?js$/,
         loader: 'babel-loader'
+      },
+      {
+        test: /\.less$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1
+            }
+          },
+          'postcss-loader',
+          'less-loader',
+        ]
       }
     ]
   },

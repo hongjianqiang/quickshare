@@ -1,7 +1,27 @@
+<template>
+  <div class="container">
+    <span>哈哈</span>
+    <input placeholder="请输入值" />
+  </div>
+</template>
+
 <script>
   export default {
-    render (h) {
-      return <h2>JSX启动!</h2>
-    }
   }
 </script>
+
+<style lang="less" scoped>
+@color: blue;
+
+.container {
+  input::placeholder {
+    color: yellow;
+  }
+
+  display: flex;
+  justify-content: center;
+  span {
+    background: @color;
+  }
+}
+</style>
