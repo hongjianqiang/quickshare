@@ -4,8 +4,8 @@
   "description": "一个类似Python的SimpleHTTPServer、http.server模块，但拥有上传和断点续传的功能",
   "main": "",
   "scripts": {
-    "dev:client": "webpack --config ./build/webpack.dev.js",
-    "build": "node ./build/index.js"
+    "dev": "node ./scripts/dev-server.js",
+    "build": "node ./scripts/build.js"
   },
   "repository": {
     "type": "git",
@@ -22,8 +22,12 @@
     "@babel/preset-env": "^7.12.11",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
+    "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.1",
+    "open": "^7.3.1",
     "webpack": "^4.46.0",
+    "webpack-dev-middleware": "^4.0.4",
+    "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
