@@ -25,14 +25,15 @@
     "express": "^4.17.1",
     "html-webpack-plugin": "^4.5.1",
     "open": "^7.3.1",
+    "vue-loader": "^15.9.6",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "^4.46.0",
     "webpack-dev-middleware": "^4.0.4",
     "webpack-hot-middleware": "^2.25.0",
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
-    "vue": "^2.6.12",
-    "vue-template-compiler": "^2.6.12"
+    "vue": "^2.6.12"
   },
   "engines": {
     "node": ">= 8.0.0",

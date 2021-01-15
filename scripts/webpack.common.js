@@ -1,31 +1,28 @@
 const path = require('path')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 module.exports = {
   entry: {
-    client: './client/main.js'
+    client: [
+      path.resolve(__dirname, '..', 'client', 'main.js'),
+      'webpack-hot-middleware/client?quiet=true&reload=true' // 热配置重载
+    ]
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Quickshare App'
-    })
-  ],
   module: {
     rules: [
       {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      },
+      {
         test: /\.m?js$/,
-        // exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+        loader: 'babel-loader'
       }
     ]
   },
+  plugins: [
+    new VueLoaderPlugin()
+  ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, '..', 'dist', 'client'),
