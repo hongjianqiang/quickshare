@@ -8,6 +8,12 @@ module.exports = {
       'webpack-hot-middleware/client?quiet=true&reload=true' // 热配置重载
     ]
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      '@': path.resolve(__dirname, '..', 'client')
+    }
+  },
   module: {
     rules: [
       {

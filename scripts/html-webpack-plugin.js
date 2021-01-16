@@ -9,9 +9,9 @@ const Options = {
       <head>
         <meta charset="utf-8">
         <title>${name.charAt(0).toUpperCase() + name.slice(1)} App</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
       </head>
       <body>
+        <noscript>未开启 JavaScript 将无法使用大部分功能</noscript>
         <div id="app"></div>
       </body>
     </html>
