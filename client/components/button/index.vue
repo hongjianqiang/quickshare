@@ -1,5 +1,5 @@
 <template>
-  <button :class="`button ${type}`" @click="onClick"><slot></slot></button>
+  <button :class="`button ${type}`" @click.stop="onClick"><slot></slot></button>
 </template>
 
 <script>
@@ -28,6 +28,11 @@
     padding: @padding-xs @padding-md;
     border-style: none;
     cursor: pointer;
+  }
+
+  .button:hover, .button:focus {
+    outline: none;
+    opacity: @active-opacity;
   }
 
   .primary {

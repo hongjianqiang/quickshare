@@ -1,13 +1,11 @@
 <template>
   <div class="container">
-    <v-dropdown-button>
+    <v-button-dropdown>
       <span>上传</span>
-      <div slot="dropdown">
-        <span>上传文件</span>
-        <span>上传文件夹</span>
-        <span>上传并解压文件</span>
-      </div>
-    </v-dropdown-button>
+      <v-button-upload slot="dropdown-item">上传文件</v-button-upload>
+      <v-button-upload slot="dropdown-item">上传文件夹</v-button-upload>
+      <v-button-upload slot="dropdown-item">上传并解压</v-button-upload>
+    </v-button-dropdown>
   </div>
 </template>
 
@@ -25,7 +23,7 @@
 body {
   font-size: 16px; /* 修正字体大小 */
   height: 100vh;
-  border: 1px dashed @red;
+  // border: 1px dashed @red;
 }
 
 noscript {
@@ -41,6 +39,7 @@ noscript {
   width: 100%;
   max-width: 1400px;
   margin: auto;
-  border: 1px dashed @green;
+  padding: @padding-md;
+  // border: 1px dashed @green;
 }
 </style>

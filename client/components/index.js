@@ -1,7 +1,9 @@
 import Vue from 'vue'
 
 import Button from '@/components/button'
-import DropdownButton from '@/components/dropdown-button'
+import ButtonDropdown from '@/components/button-dropdown'
+import ButtonUpload from '@/components/button-upload'
 
 Vue.component('v-button', Button)
-Vue.component('v-dropdown-button', DropdownButton)
+Vue.component('v-button-dropdown', ButtonDropdown)
+Vue.component('v-button-upload', ButtonUpload)
