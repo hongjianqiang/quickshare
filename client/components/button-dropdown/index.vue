@@ -1,8 +1,8 @@
 <template>
   <div class="dropdown-button">
-    <v-button @click="onClick"><slot></slot></v-button>
+    <v-button @click.stop="onClick"><slot></slot></v-button>
     <div class="dropdown" v-show="visible">
-      <div class="items">
+      <div class="items" :style="`z-index: ${$zIndex}`">
         <slot name="dropdown-item"></slot>
       </div>
     </div>
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  @import '@/style/var.less';
+  @import '@/styles/var.less';
 
   .dropdown-button {
     display: inline-block;

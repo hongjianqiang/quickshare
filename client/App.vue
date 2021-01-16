@@ -2,21 +2,26 @@
   <div class="container">
     <v-button-dropdown>
       <span>上传</span>
-      <v-button-upload slot="dropdown-item">上传文件</v-button-upload>
-      <v-button-upload slot="dropdown-item">上传文件夹</v-button-upload>
-      <v-button-upload slot="dropdown-item">上传并解压</v-button-upload>
+      <v-button-upload slot="dropdown-item" multiple>上传文件</v-button-upload>
+      <v-button-upload slot="dropdown-item" webkitdirectory>上传文件夹</v-button-upload>
+      <v-button-upload slot="dropdown-item" :multiple="false">上传并解压</v-button-upload>
     </v-button-dropdown>
+    <v-button type="plain">打包下载</v-button>
+    <v-breadcrumb></v-breadcrumb>
   </div>
 </template>
 
 <script>
   export default {
+    mounted () {
+      console.log(this)
+    }
   }
 </script>
 
 <style lang="less">
 @import 'normalize.css';
-@import '@/style/var.less';
+@import '@/styles/var.less';
 
 * { box-sizing: border-box; }
 

@@ -1,10 +1,18 @@
 <template>
-  <a class="button-upload"><slot></slot><input title="点击选择文件" multiple type="file"></a>
+  <a class="button-upload"><slot></slot><input title="点击选择文件" :multiple="multiple" :webkitdirectory="webkitdirectory" type="file"></a>
 </template>
 
 <script>
 export default {
-  methods: {
+  props: {
+    multiple: {
+      type: Boolean,
+      default: false
+    },
+    webkitdirectory: {
+      type: Boolean,
+      default: false
+    }
   }
 }
 </script>
