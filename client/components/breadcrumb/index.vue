@@ -33,6 +33,8 @@
     overflow-x: overlay;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
+    background: @gray-3;
+    border-radius: @border-radius-md;
     .scroll-wrap {
       display: inline-flex;
     }
@@ -54,7 +56,7 @@
       .breadcrumb__separator {
         padding-left: @padding-xs;
         padding-right: @padding-xs;
-        color: @gray-5;
+        color: @gray-6;
       }
     }
   }
