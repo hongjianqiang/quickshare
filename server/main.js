@@ -1,9 +1,21 @@
 import http from 'http'
 import tryUsePort from '../shared/tryUsePort'
+import { URLSearch } from './data-types'
 import { LOCALHOSTS, HOST, PORT, CHARSET, ROOT_DIR } from './config'
 
+function requestHandler (req, res) {
+  const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress
+  const { method } = req
+  const urlSearch = new URLSearch(req.url)
+
+  console.log(`${method} ${urlSearch} FROM ${clientIP}`)
+
+  res.writeHead(200)
+  res.end('Success!')
+}
+
 tryUsePort(PORT, port => {
-  (() => {
+  http.createServer(requestHandler).listen(port, HOST, () => {
     console.clear();
     console.log('=================================================\n');
     console.log('You can now view this app in the browser.\n');
@@ -17,5 +29,5 @@ tryUsePort(PORT, port => {
   
     console.log('The service is running.\n');
     console.log('=================================================\n');
-  })()
+  })
 })
