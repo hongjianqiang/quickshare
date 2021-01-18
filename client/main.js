@@ -43,6 +43,22 @@ Object.defineProperty(Vue.prototype, '$zIndex', {
   }
 })
 
+Vue.prototype.$fetch = function (url, options = { method: 'GET', header: {}, onprogress: null, body: null }) {
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    const { method, header, onprogress, body } = options
+
+    xhr.onload = () => {
+
+    }
+    xhr.onprogress = onprogress
+    xhr.onerror = reject
+
+    xhr.open(method, url)
+    xhr.send(body)
+  })
+}
+
 new Vue({
   render: h => h(App)
 }).$mount('#app')
