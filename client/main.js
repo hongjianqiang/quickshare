@@ -1,6 +1,6 @@
 import Vue from 'vue'
+import router from '@/router'
 import App from './App.vue'
-
 import '@/components'
 
 (function (normal, baseFontSize = 100, fontscale = 1) {
@@ -43,13 +43,20 @@ Object.defineProperty(Vue.prototype, '$zIndex', {
   }
 })
 
-Vue.prototype.$fetch = function (url, options = { method: 'GET', header: {}, onprogress: null, body: null }) {
+Vue.prototype.$fetch = function (url, { method = 'GET', header = {}, onprogress = null, body = null, responseType = 'json' , timeout = Infinity } = {}) {
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest()
-    const { method, header, onprogress, body } = options
 
+    Object.entries(header).map(([name, value]) => xhr.setRequestHeader(name, value))
+
+    xhr.timeout = timeout
+    xhr.responseType = responseType
     xhr.onload = () => {
-
+      if (200 <= xhr.status < 300) {
+        resolve(xhr.response)
+      } else if (500 <= xhr.status) { 
+        reject(xhr.response)
+      }
     }
     xhr.onprogress = onprogress
     xhr.onerror = reject
@@ -60,5 +67,6 @@ Vue.prototype.$fetch = function (url, options = { method: 'GET', header: {}, onp
 }
 
 new Vue({
+  router,
   render: h => h(App)
 }).$mount('#app')
