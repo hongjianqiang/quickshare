@@ -2,6 +2,7 @@ import Vue from 'vue'
 import router from '@/router'
 import App from './App.vue'
 import '@/components'
+import '@/plugins'
 
 (function (normal, baseFontSize = 100, fontscale = 1) {
   const { document, navigator } = window
@@ -42,29 +43,6 @@ Object.defineProperty(Vue.prototype, '$zIndex', {
     return this._zIndex++
   }
 })
-
-Vue.prototype.$fetch = function (url, { method = 'GET', header = {}, onprogress = null, body = null, responseType = 'json' , timeout = Infinity } = {}) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest()
-
-    Object.entries(header).map(([name, value]) => xhr.setRequestHeader(name, value))
-
-    xhr.timeout = timeout
-    xhr.responseType = responseType
-    xhr.onload = () => {
-      if (200 <= xhr.status < 300) {
-        resolve(xhr.response)
-      } else if (500 <= xhr.status) { 
-        reject(xhr.response)
-      }
-    }
-    xhr.onprogress = onprogress
-    xhr.onerror = reject
-
-    xhr.open(method, url)
-    xhr.send(body)
-  })
-}
 
 new Vue({
   router,
