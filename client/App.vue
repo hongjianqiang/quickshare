@@ -5,15 +5,7 @@
 <style lang="less">
 @import 'normalize.css';
 @import '@/styles/var.less';
-
-.generate-margin(32);
-.generate-margin(@n, @i: 4) when (@i =< @n) {
-  .m-t-@{i} { margin-top: (@i * 0.01rem); }
-  .m-l-@{i} { margin-left: (@i * 0.01rem); }
-  .m-b-@{i} { margin-bottom: (@i * 0.01rem); }
-  .m-r-@{i} { margin-right: (@i * 0.01rem); }
-  .generate-margin(@n, (@i + 4));
-}
+@import '@/styles/common.less';
 
 * { box-sizing: border-box; }
 

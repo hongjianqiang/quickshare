@@ -12,6 +12,7 @@
     </v-group>
     <v-breadcrumb class="m-b-16"></v-breadcrumb>
     <v-file-list></v-file-list>
+    <v-alert></v-alert>
   </div>
 </template>
 
