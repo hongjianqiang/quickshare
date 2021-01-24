@@ -30,9 +30,11 @@
     },
 
     methods: {
-      setBreadcrumb () {
+      async setBreadcrumb () {
         const { path } = this.$route
-        console.log(path)
+        const result = await this.$fetch(`/api/getDirectory?path=${path}`)
+
+        console.log(result)
       }
     }
   }

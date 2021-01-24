@@ -6,6 +6,8 @@ module.exports = function (api) {
       '@babel/preset-env',
       '@vue/babel-preset-jsx'
     ],
-    plugins: []
+    plugins: [
+      '@babel/plugin-transform-runtime'
+    ]
   }
 }
