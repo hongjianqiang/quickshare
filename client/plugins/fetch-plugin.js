@@ -15,7 +15,9 @@ export default {
             resolve(response)
           } else if (400 <= status && status < 500) {
             const errorText = `${status} ${statusText}`
-            alert(errorText)
+            this.$alert(errorText, '错误', {
+              type: 'error'
+            })
             reject(new ReferenceError(errorText))
           } else if (500 <= status) { 
             reject(response)
