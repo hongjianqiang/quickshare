@@ -35,15 +35,6 @@ import '@/plugins'
   documentElement.style.fontSize = normal ? '50px' : `${baseFontSize / 2 * dpr * fontscale}px`
 })(false, 200, 1)
 
-Object.defineProperty(Vue.prototype, '$zIndex', {
-  get () {
-    if (!this._zIndex) {
-      this._zIndex = 1
-    }
-    return this._zIndex++
-  }
-})
-
 new Vue({
   router,
   render: h => h(App)

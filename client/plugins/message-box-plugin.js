@@ -3,7 +3,7 @@ export default {
     let vm = null
 
     Vue.prototype.$alert = function (message, title, options) {
-      alert(message)
+      // alert(message)
     }
   }
 }
