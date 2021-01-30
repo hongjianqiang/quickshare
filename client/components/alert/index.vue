@@ -1,14 +1,12 @@
 <template>
-  <div class="rel">
+  <div class="rel" v-show="visible">
     <div class="fixed modal" :style="`z-index: ${$zIndex}`">
       <div class="fixed box">
         <div class="header">
-          <div class="title">标题名称</div>
-          <i class="iconfont iconclose cp"></i>
+          <div class="title">{{title}}</div>
+          <i class="iconfont iconclose cp" @click="onClose"></i>
         </div>
-        <div class="content">
-          这是一段内容
-        </div>
+        <div class="content">{{content}}</div>
         <div class="bottom">
           <v-button>确定</v-button>
         </div>
@@ -16,6 +14,31 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    props: {
+      title: {
+        type: String,
+        default: ''
+      },
+      content: {
+        type: String,
+        default: ''
+      },
+    },
+    data () {
+      return {
+        visible: true
+      }
+    },
+    methods: {
+      onClose () {
+        this.visible = false
+      }
+    }
+  }
+</script>
 
 <style lang="less" scoped>
   @import '@/styles/var.less';
