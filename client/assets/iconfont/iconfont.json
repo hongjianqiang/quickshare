@@ -1,0 +1,107 @@
+{
+  "id": "2357132",
+  "name": "Quickshare App",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "5970266",
+      "name": "close-circle-fill",
+      "font_class": "close-circle-fill",
+      "unicode": "e829",
+      "unicode_decimal": 59433
+    },
+    {
+      "icon_id": "5970267",
+      "name": "close-circle",
+      "font_class": "close-circle",
+      "unicode": "e82a",
+      "unicode_decimal": 59434
+    },
+    {
+      "icon_id": "5970268",
+      "name": "close-square-fill",
+      "font_class": "close-square-fill",
+      "unicode": "e82b",
+      "unicode_decimal": 59435
+    },
+    {
+      "icon_id": "5970270",
+      "name": "close-square",
+      "font_class": "close-square",
+      "unicode": "e82d",
+      "unicode_decimal": 59437
+    },
+    {
+      "icon_id": "5970271",
+      "name": "close",
+      "font_class": "close",
+      "unicode": "e82e",
+      "unicode_decimal": 59438
+    },
+    {
+      "icon_id": "5970275",
+      "name": "cloud-upload",
+      "font_class": "cloud-upload",
+      "unicode": "e832",
+      "unicode_decimal": 59442
+    },
+    {
+      "icon_id": "5970276",
+      "name": "cloud-download",
+      "font_class": "cloud-download",
+      "unicode": "e833",
+      "unicode_decimal": 59443
+    },
+    {
+      "icon_id": "5970382",
+      "name": "file-zip-fill",
+      "font_class": "file-zip-fill",
+      "unicode": "e89c",
+      "unicode_decimal": 59548
+    },
+    {
+      "icon_id": "5970383",
+      "name": "file-zip",
+      "font_class": "file-zip",
+      "unicode": "e89d",
+      "unicode_decimal": 59549
+    },
+    {
+      "icon_id": "5970426",
+      "name": "home-fill",
+      "font_class": "home-fill",
+      "unicode": "e8c8",
+      "unicode_decimal": 59592
+    },
+    {
+      "icon_id": "5970492",
+      "name": "minus",
+      "font_class": "minus",
+      "unicode": "e90a",
+      "unicode_decimal": 59658
+    },
+    {
+      "icon_id": "5970518",
+      "name": "plus",
+      "font_class": "plus",
+      "unicode": "e924",
+      "unicode_decimal": 59684
+    },
+    {
+      "icon_id": "5970534",
+      "name": "qrcode",
+      "font_class": "qrcode",
+      "unicode": "e934",
+      "unicode_decimal": 59700
+    },
+    {
+      "icon_id": "5970579",
+      "name": "share",
+      "font_class": "share",
+      "unicode": "e961",
+      "unicode_decimal": 59745
+    }
+  ]
+}
