@@ -4,7 +4,7 @@
       <div class="fixed box">
         <div class="header">
           <div class="title">标题名称</div>
-          <div class="close"></div>
+          <i class="iconfont iconclose cp"></i>
         </div>
         <div class="content">
           这是一段内容
@@ -40,6 +40,8 @@
       padding: @padding-sm @padding-md;
       font-size: @font-size-lg;
       color: @text-color;
+      display: flex;
+      justify-content: space-between;
     }
     .content {
       padding: @padding-sm @padding-md;
