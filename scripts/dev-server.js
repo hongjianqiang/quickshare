@@ -4,6 +4,7 @@ const open = require('open')
 const express = require('express')
 const webpack = require('webpack')
 
+const { createProxyMiddleware } = require('http-proxy-middleware')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
@@ -17,6 +18,8 @@ tryUsePort(process.env.PORT || process.argv[2] || 2020, port => {
   
   const app = express()
   
+  app.use('/api', createProxyMiddleware({ target: `http://127.0.0.1:${port+1}`, changeOrigin: true }));
+
   app.use(devInstance)
   app.use(hotInstance)
   

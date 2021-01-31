@@ -5,7 +5,8 @@
   "main": "",
   "scripts": {
     "dev": "node ./scripts/dev-server.js",
-    "build": "node ./scripts/build.js"
+    "build": "node ./scripts/build.js",
+    "server": "node ./server/start.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "express": "^4.17.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.1",
+    "http-proxy-middleware": "^1.0.6",
     "less": "^4.1.0",
     "less-loader": "^7.2.1",
     "open": "^7.3.1",
