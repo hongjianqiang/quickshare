@@ -18,7 +18,7 @@ tryUsePort(process.env.PORT || process.argv[2] || 2020, port => {
   
   const app = express()
   
-  app.use('/api', createProxyMiddleware({ target: `http://127.0.0.1:${port+1}`, changeOrigin: true }));
+  app.use('/api', createProxyMiddleware({ target: `http://localhost:${port+1}`, changeOrigin: true }));
 
   app.use(devInstance)
   app.use(hotInstance)

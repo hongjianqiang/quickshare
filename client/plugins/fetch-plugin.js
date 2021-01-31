@@ -11,6 +11,7 @@ export default {
         xhr.responseType = responseType
         xhr.onload = () => {
           const { status, statusText, response } = xhr
+          console.log(xhr)
 
           if (200 <= status && status < 300) {
             resolve(response)
@@ -25,7 +26,7 @@ export default {
           }
         }
         xhr.onprogress = (...rest) => {
-          // close()
+          close()
           onprogress && onprogress(...rest)
         }
         xhr.onerror = (...rest) => {

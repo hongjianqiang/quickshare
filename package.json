@@ -49,6 +49,7 @@
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
+    "path-to-regexp": "^6.2.0",
     "vue": "^2.6.12",
     "vue-router": "^3.4.9"
   },

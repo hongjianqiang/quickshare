@@ -1,14 +1,14 @@
-const privateVariable = new WeakMap()
+const privateVar = new WeakMap()
 
 export class URLSearch {
   constructor (url) {
-    privateVariable.set(this, {
+    privateVar.set(this, {
       url: decodeURIComponent(url)
     })
   }
 
   get query () {
-    const { url } = privateVariable.get(this)
+    const { url } = privateVar.get(this)
     const result = {}
 
     url.replace(/([^?&=]+)=([^&]+)/g, (_, k, v) => result[k] = v)
@@ -16,8 +16,13 @@ export class URLSearch {
     return result
   }
 
+  get pathname () {
+    const { url } = privateVar.get(this)
+    return url.split('?')[0]
+  }
+
   toString () {
-    const { url } = privateVariable.get(this)
+    const { url } = privateVar.get(this)
     return url
   }
 }

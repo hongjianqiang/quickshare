@@ -1,7 +1,9 @@
 import http from 'http'
+import { match } from 'path-to-regexp'
 import tryUsePort from '../shared/tryUsePort'
 import { URLSearch } from './data-types'
 import { LOCALHOSTS, HOST, PORT, CHARSET, ROOT_DIR } from './config'
+import { routes } from './router/index'
 
 function requestHandler (req, res) {
   const clientIP = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress
@@ -10,8 +12,23 @@ function requestHandler (req, res) {
 
   console.log(`${method} ${urlSearch} FROM ${clientIP}`)
 
-  res.writeHead(200)
-  res.end('Success!')
+  const route = routes.find(route => {
+    if (method.toUpperCase() === route.method?.toUpperCase()) {
+      return match(route.path, { decode: decodeURIComponent })(urlSearch.pathname)
+    } else {
+      return false
+    }
+  })
+
+  if (route) {
+    const { query } = urlSearch
+    const { controller } = route
+    const { params } = match(route.path, { decode: decodeURIComponent })(urlSearch.pathname)
+
+    controller().then(module => {
+      module.default(req, res, query, params)
+    })
+  }
 }
 
 tryUsePort(PORT, port => {
