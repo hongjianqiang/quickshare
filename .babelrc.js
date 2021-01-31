@@ -4,9 +4,9 @@ module.exports = function (api) {
   return {
     presets: [
       [
-        '@babel/preset-env',
-        {
-          'useBuiltIns': 'usage'
+        '@babel/preset-env', {
+          'useBuiltIns': 'usage',
+          'corejs': '3.8'
         }
       ],
       '@vue/babel-preset-jsx'
