@@ -25,4 +25,6 @@ async function tryUsePort (port, portAvailableCallback) {
   }
 }
 
-module.exports = tryUsePort
+module.exports = {
+  tryUsePort,
+}

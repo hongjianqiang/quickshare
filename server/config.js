@@ -42,12 +42,12 @@ export const PORT = getParamValue(['-p', '--port'], 2020)
 export const CHARSET = getParamValue(['-c', '--charset'], 'UTF-8')
 
 // 自定义根目录
-export const ROOT_DIR = getParamValue(['-d', '--dir'], process.cwd())
+export const BASE_DIR = getParamValue(['-d', '--dir'], process.cwd())
 
 export default {
   HOST,
   PORT,
   CHARSET,
-  ROOT_DIR,
+  BASE_DIR,
   LOCALHOSTS
 }

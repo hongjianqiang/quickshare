@@ -11,7 +11,7 @@
       <v-button type="plain" slot="item">共享剪切板</v-button>
     </v-group>
     <v-breadcrumb class="m-b-16"></v-breadcrumb>
-    <v-file-list></v-file-list>
+    <v-file-list :value="fileList"></v-file-list>
   </div>
 </template>
 
@@ -21,7 +21,8 @@
   export default {
     data () {
       return {
-        breadcrumb: new Breadcrumb()
+        breadcrumb: new Breadcrumb(),
+        fileList: []
       }
     },
 
@@ -32,9 +33,8 @@
     methods: {
       async setBreadcrumb () {
         const { path } = this.$route
-        const result = await this.$fetch(`/api/getDirectory?path=${path}`)
-
-        console.log(result)
+        
+        this.fileList = await this.$fetch(`/api/getDirectory?pathname=${path}`)
       }
     }
   }

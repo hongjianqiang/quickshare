@@ -3,7 +3,12 @@ module.exports = function (api) {
 
   return {
     presets: [
-      '@babel/preset-env',
+      [
+        '@babel/preset-env',
+        {
+          'useBuiltIns': 'usage'
+        }
+      ],
       '@vue/babel-preset-jsx'
     ],
     plugins: [

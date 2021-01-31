@@ -2,7 +2,12 @@ process.env.UV_THREADPOOL_SIZE = require('os').cpus().length // 设置 NodeJS �
 
 require('@babel/register')({
   presets: [
-    '@babel/preset-env'
+    [
+      '@babel/preset-env', {
+        'useBuiltIns': 'usage',
+        'corejs': '3.8'
+      }
+    ],
   ],
   plugins: [
     '@babel/plugin-transform-runtime'

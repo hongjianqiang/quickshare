@@ -8,7 +8,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 
-const tryUsePort = require('../shared/tryUsePort')
+const { tryUsePort } = require('../shared/index.js')
 const WEBPACK_DEV_CONFIG = require('./webpack.dev.js')
 
 tryUsePort(process.env.PORT || process.argv[2] || 2020, port => {

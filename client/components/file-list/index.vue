@@ -7,24 +7,48 @@
       <span>修改日期</span>
     </div>
     <div class="body">
-      <div class="row" v-for="i of 5" :key="i">
+      <div class="row" v-for="(item, index) of value" :key="index">
         <input type="checkbox" class="m-r-8">
         <div class="file-name">
-          <div>这是一个文件夹</div>
+          <div>{{item.filename}}</div>
           <div class="info m-t-4">
-            <span>2021-01-17 01:23:45</span>
+            <span>{{item.lastModifiedDate}}</span>
           </div>
         </div>
         <div class="size">
-          <span>12.34MB</span>
+          <span v-if="item.isFile">{{item.size | fmtBytes}}</span>
+          <span v-else>--</span>
         </div>
         <div class="modify-date">
-          <span>2021-01-17 01:23:45</span>
+          <span>{{item.lastModifiedDate}}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    props: {
+      value: {
+        type: Array,
+        default: () => []
+      }
+    },
+
+    filters: {
+      fmtBytes (bytes, decimals = 2) {
+        if (0 === +bytes) return '0 Bytes'
+
+        const k = 1024
+        const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+        const i = Math.floor(Math.log(bytes)/Math.log(k))
+
+        return `${parseFloat((bytes/Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`
+      }
+    }
+  }
+</script>
 
 <style lang="less" scoped>
   @import "@/styles/var.less";

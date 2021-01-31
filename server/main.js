@@ -1,8 +1,8 @@
 import http from 'http'
 import { match } from 'path-to-regexp'
-import tryUsePort from '../shared/tryUsePort'
+import { tryUsePort } from '../shared'
 import { URLSearch } from './data-types'
-import { LOCALHOSTS, HOST, PORT, CHARSET, ROOT_DIR } from './config'
+import { LOCALHOSTS, HOST, PORT, CHARSET, BASE_DIR } from './config'
 import { routes } from './router/index'
 
 function requestHandler (req, res) {
@@ -26,7 +26,8 @@ function requestHandler (req, res) {
     const { params } = match(route.path, { decode: decodeURIComponent })(urlSearch.pathname)
 
     controller().then(module => {
-      module.default(req, res, query, params)
+      res.writeHead(200)
+      module.default({ req, res, query, params })
     })
   }
 }
