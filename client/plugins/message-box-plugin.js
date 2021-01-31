@@ -4,7 +4,7 @@ export default {
   install (Vue) {
     let vm = null
 
-    Vue.prototype.$alert = function (message, title, options) {
+    Vue.prototype.$alert = function (message = '', title = '', options) {
       const propsData = {
         title,
         content: message
@@ -17,6 +17,8 @@ export default {
         vm = new Alert({ propsData }).$mount()
         document.body.append(vm.$el)
       }
+
+      vm.visible = true
     }
   }
 }

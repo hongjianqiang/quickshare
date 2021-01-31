@@ -2,6 +2,7 @@ export default {
   install (Vue) {
     Vue.prototype.$fetch = function (url, { method = 'GET', header = {}, onprogress = null, body = null, responseType = 'json' , timeout = Infinity } = {}) {
       return new Promise((resolve, reject) => {
+        const close = this.$loading()
         const xhr = new XMLHttpRequest()
 
         Object.entries(header).map(([name, value]) => xhr.setRequestHeader(name, value))
@@ -24,9 +25,11 @@ export default {
           }
         }
         xhr.onprogress = (...rest) => {
+          // close()
           onprogress && onprogress(...rest)
         }
         xhr.onerror = (...rest) => {
+          close()
           reject && reject(...rest)
         }
 
