@@ -23,8 +23,12 @@ export default {
             reject(response)
           }
         }
-        xhr.onprogress = onprogress
-        xhr.onerror = reject
+        xhr.onprogress = (...rest) => {
+          onprogress && onprogress(...rest)
+        }
+        xhr.onerror = (...rest) => {
+          reject && reject(...rest)
+        }
 
         xhr.open(method, url)
         xhr.send(body)

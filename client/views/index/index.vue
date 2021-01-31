@@ -27,6 +27,7 @@
 
     created () {
       // this.setBreadcrumb()
+      console.log(this)
     },
 
     methods: {

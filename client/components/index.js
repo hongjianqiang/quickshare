@@ -7,6 +7,7 @@ import Breadcrumb from '@/components/breadcrumb'
 import Group from '@/components/group'
 import FileList from '@/components/file-list'
 import Alert from '@/components/alert'
+import Loading from '@/components/loading'
 
 Vue.component('v-button', Button)
 Vue.component('v-button-dropdown', ButtonDropdown)
@@ -15,3 +16,4 @@ Vue.component('v-breadcrumb', Breadcrumb)
 Vue.component('v-group', Group)
 Vue.component('v-file-list', FileList)
 Vue.component('v-alert', Alert)
+Vue.component('v-loading', Loading)
