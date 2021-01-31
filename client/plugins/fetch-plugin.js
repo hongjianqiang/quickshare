@@ -14,7 +14,7 @@ export default {
           if (200 <= status && status < 300) {
             resolve(response)
           } else if (400 <= status && status < 500) {
-            const errorText = `${status} ${statusText}`
+            const errorText = `<span style="color: red;">${method}</span> ${url} <span style="color: red;">${status}(${statusText})</span>`
             this.$alert(errorText, '错误', {
               type: 'error'
             })

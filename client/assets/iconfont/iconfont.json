@@ -6,6 +6,55 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1315275",
+      "name": "Loading",
+      "font_class": "loading",
+      "unicode": "e6a0",
+      "unicode_decimal": 59040
+    },
+    {
+      "icon_id": "2045298",
+      "name": "prompt_fill",
+      "font_class": "info-circle-fill",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "2045299",
+      "name": "prompt",
+      "font_class": "info-circle",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "2045339",
+      "name": "success_fill",
+      "font_class": "success-circle-fill",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    },
+    {
+      "icon_id": "2045340",
+      "name": "success",
+      "font_class": "success-circle",
+      "unicode": "e762",
+      "unicode_decimal": 59234
+    },
+    {
+      "icon_id": "2045375",
+      "name": "warning_fill",
+      "font_class": "warning_fill",
+      "unicode": "e778",
+      "unicode_decimal": 59256
+    },
+    {
+      "icon_id": "2045376",
+      "name": "warning",
+      "font_class": "warning",
+      "unicode": "e779",
+      "unicode_decimal": 59257
+    },
+    {
       "icon_id": "5970266",
       "name": "close-circle-fill",
       "font_class": "close-circle-fill",

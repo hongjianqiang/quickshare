@@ -6,9 +6,9 @@
           <div class="title">{{title}}</div>
           <i class="iconfont iconclose cp" @click="onClose"></i>
         </div>
-        <div class="content">{{content}}</div>
+        <div class="content"><div v-html="content"></div></div>
         <div class="bottom">
-          <v-button>确定</v-button>
+          <v-button @click="onClose">确定</v-button>
         </div>
       </div>
     </div>
