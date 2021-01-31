@@ -11,7 +11,7 @@
       <v-button type="plain" slot="item">共享剪切板</v-button>
     </v-group>
     <v-breadcrumb class="m-b-16"></v-breadcrumb>
-    <v-file-list :value="fileList"></v-file-list>
+    <v-file-list :value="fileList | excludeHiddenFiles"></v-file-list>
   </div>
 </template>
 
@@ -35,6 +35,12 @@
         const { path } = this.$route
         
         this.fileList = await this.$fetch(`/api/getDirectory?pathname=${path}`)
+      }
+    },
+
+    filters: {
+      excludeHiddenFiles (list) {
+        return list.filter(f => !/^\./.test(f.filename))
       }
     }
   }

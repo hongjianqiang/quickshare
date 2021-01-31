@@ -6,6 +6,174 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "5970361",
+      "name": "file-add-fill",
+      "font_class": "file-add-fill",
+      "unicode": "e887",
+      "unicode_decimal": 59527
+    },
+    {
+      "icon_id": "5970362",
+      "name": "file-add",
+      "font_class": "file-add",
+      "unicode": "e888",
+      "unicode_decimal": 59528
+    },
+    {
+      "icon_id": "5970365",
+      "name": "file-excel-fill",
+      "font_class": "file-excel-fill",
+      "unicode": "e88b",
+      "unicode_decimal": 59531
+    },
+    {
+      "icon_id": "5970366",
+      "name": "file-excel",
+      "font_class": "file-excel",
+      "unicode": "e88c",
+      "unicode_decimal": 59532
+    },
+    {
+      "icon_id": "5970370",
+      "name": "file-image-fill",
+      "font_class": "file-image-fill",
+      "unicode": "e890",
+      "unicode_decimal": 59536
+    },
+    {
+      "icon_id": "5970371",
+      "name": "file-image",
+      "font_class": "file-image",
+      "unicode": "e891",
+      "unicode_decimal": 59537
+    },
+    {
+      "icon_id": "5970372",
+      "name": "file-markdown",
+      "font_class": "file-markdown",
+      "unicode": "e892",
+      "unicode_decimal": 59538
+    },
+    {
+      "icon_id": "5970373",
+      "name": "file-markdown-fill",
+      "font_class": "file-markdown-fill",
+      "unicode": "e893",
+      "unicode_decimal": 59539
+    },
+    {
+      "icon_id": "5970374",
+      "name": "file-pdf-fill",
+      "font_class": "file-pdf-fill",
+      "unicode": "e894",
+      "unicode_decimal": 59540
+    },
+    {
+      "icon_id": "5970375",
+      "name": "file-pdf",
+      "font_class": "file-pdf",
+      "unicode": "e895",
+      "unicode_decimal": 59541
+    },
+    {
+      "icon_id": "5970376",
+      "name": "file-ppt-fill",
+      "font_class": "file-ppt-fill",
+      "unicode": "e896",
+      "unicode_decimal": 59542
+    },
+    {
+      "icon_id": "5970377",
+      "name": "file-ppt",
+      "font_class": "file-ppt",
+      "unicode": "e897",
+      "unicode_decimal": 59543
+    },
+    {
+      "icon_id": "5970378",
+      "name": "file-text-fill",
+      "font_class": "file-text-fill",
+      "unicode": "e898",
+      "unicode_decimal": 59544
+    },
+    {
+      "icon_id": "5970379",
+      "name": "file-text",
+      "font_class": "file-text",
+      "unicode": "e899",
+      "unicode_decimal": 59545
+    },
+    {
+      "icon_id": "5970380",
+      "name": "file-unknown-fill",
+      "font_class": "file-unknown-fill",
+      "unicode": "e89a",
+      "unicode_decimal": 59546
+    },
+    {
+      "icon_id": "5970381",
+      "name": "file-unknown",
+      "font_class": "file-unknown",
+      "unicode": "e89b",
+      "unicode_decimal": 59547
+    },
+    {
+      "icon_id": "5970385",
+      "name": "file-word",
+      "font_class": "file-word",
+      "unicode": "e89f",
+      "unicode_decimal": 59551
+    },
+    {
+      "icon_id": "5970391",
+      "name": "file-word-fill",
+      "font_class": "file-word-fill",
+      "unicode": "e8a5",
+      "unicode_decimal": 59557
+    },
+    {
+      "icon_id": "5970393",
+      "name": "folder-add-fill",
+      "font_class": "folder-add-fill",
+      "unicode": "e8a7",
+      "unicode_decimal": 59559
+    },
+    {
+      "icon_id": "5970394",
+      "name": "folder-add",
+      "font_class": "folder-add",
+      "unicode": "e8a8",
+      "unicode_decimal": 59560
+    },
+    {
+      "icon_id": "5970396",
+      "name": "folder-open-fill",
+      "font_class": "folder-open-fill",
+      "unicode": "e8aa",
+      "unicode_decimal": 59562
+    },
+    {
+      "icon_id": "5970397",
+      "name": "folder-open",
+      "font_class": "folder-open",
+      "unicode": "e8ab",
+      "unicode_decimal": 59563
+    },
+    {
+      "icon_id": "5970571",
+      "name": "search",
+      "font_class": "search",
+      "unicode": "e959",
+      "unicode_decimal": 59737
+    },
+    {
+      "icon_id": "5970428",
+      "name": "home",
+      "font_class": "home",
+      "unicode": "e8ca",
+      "unicode_decimal": 59594
+    },
+    {
       "icon_id": "1315275",
       "name": "Loading",
       "font_class": "loading",

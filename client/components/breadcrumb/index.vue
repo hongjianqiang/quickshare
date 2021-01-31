@@ -2,7 +2,7 @@
   <div class="breadcrumb">
     <div class="scroll-wrap">
       <div class="breadcrumb__item">
-        <span class="breadcrumb__inner active">全部文件</span>
+        <span class="breadcrumb__inner active"><i class="iconfont iconhome"></i> 全部文件</span>
         <span class="breadcrumb__separator">/</span>
       </div>
       <div class="breadcrumb__item" v-for="i of 3" :key="i">

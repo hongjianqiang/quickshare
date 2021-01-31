@@ -1,18 +1,21 @@
 <template>
   <div class="file-list">
     <div class="head">
-      <input type="checkbox" class="m-r-8">
+      <input type="checkbox" class="m-r-16">
       <span>文件名</span>
       <span>大小</span>
       <span>修改日期</span>
     </div>
     <div class="body">
       <div class="row" v-for="(item, index) of value" :key="index">
-        <input type="checkbox" class="m-r-8">
-        <div class="file-name">
-          <div>{{item.filename}}</div>
-          <div class="info m-t-4">
-            <span>{{item.lastModifiedDate}}</span>
+        <input type="checkbox" class="m-r-16">
+        <div class="file-name flex align-items-center">
+          <v-file-type :value="item" class="m-r-8"></v-file-type>
+          <div class="flex-1">
+            <div>{{item.filename}}</div>
+            <div class="info m-t-4">
+              <span>{{item.lastModifiedDate | fmtDate}}</span>
+            </div>
           </div>
         </div>
         <div class="size">
@@ -20,7 +23,7 @@
           <span v-else>--</span>
         </div>
         <div class="modify-date">
-          <span>{{item.lastModifiedDate}}</span>
+          <span>{{item.lastModifiedDate | fmtDate}}</span>
         </div>
       </div>
     </div>
@@ -45,6 +48,17 @@
         const i = Math.floor(Math.log(bytes)/Math.log(k))
 
         return `${parseFloat((bytes/Math.pow(k, i)).toFixed(decimals))} ${sizes[i]}`
+      },
+      fmtDate (strDate) {
+        const d = new Date(strDate)
+        const year = d.getFullYear()
+        const month = `${d.getMonth() + 1}`.padStart(2, '0')
+        const date = `${d.getDate()}`.padStart(2, '0')
+        const hours = `${d.getHours()}`.padStart(2, '0')
+        const minutes = `${d.getMinutes()}`.padStart(2, '0')
+        const seconds = `${d.getSeconds()}`.padStart(2, '0')
+
+        return `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`
       }
     }
   }
@@ -66,9 +80,12 @@
       align-items: center;
       font-size: @font-size-md;
     }
-    .head > span, .body .row > div  {
+    .head > span, .body .row > div {
       flex: 1;
       text-align: center;
+    }
+    .head > span:first-of-type, .body .row > div:first-of-type {
+      text-align: left;
     }
     .head {
       border-bottom: 0.01rem solid @gray-3;
@@ -77,10 +94,11 @@
     }
     .body .row {
       color: @gray-8;
-      padding: @padding-md 0;
+      padding: @padding-xs 0;
       border-bottom: 0.01rem solid @gray-3;
       .file-name .info { 
         color: @gray-6;
+        min-width: 1.5rem;
       }
     }
   }
@@ -93,6 +111,9 @@
       .body .row {
         .file-name {
           text-align: left;
+        }
+        .size {
+          text-align: right;
         }
         .modify-date {
           display: none;
