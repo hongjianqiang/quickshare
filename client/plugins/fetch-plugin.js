@@ -11,7 +11,6 @@ export default {
         xhr.responseType = responseType
         xhr.onload = () => {
           const { status, statusText, response } = xhr
-          console.log(xhr)
 
           if (200 <= status && status < 300) {
             resolve(response)
@@ -22,6 +21,10 @@ export default {
             })
             reject(new ReferenceError(errorText))
           } else if (500 <= status) { 
+            const errorText = `<span style="color: red;">${method}</span> ${url} <span style="color: red;">${status}(${statusText})</span>`
+            this.$alert(errorText, '错误', {
+              type: 'error'
+            })
             reject(response)
           }
         }
